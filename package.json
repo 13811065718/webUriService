@@ -1,0 +1,34 @@
+{
+  "name": "wanogmiosservice",
+  "version": "1.0.0",
+  "description": "ogmios service for wanchain",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./ogmiosService/Start.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@blockfrost/blockfrost-js": "^5.4.0",
+    "@cardano-ogmios/client": "^5.5.5",
+    "@cardano-sdk/core": "^0.2.0",
+    "abi-decoder": "^2.4.0",
+    "axios": "^0.26.1",
+    "cbor": "^8.1.0",
+    "cbor-sync": "^1.0.4",
+    "crypto": "^1.0.1",
+    "ipfs-core": "^0.18.1",
+    "ipfs-fetch": "^1.0.1",
+    "iwan-sdk": "^1.4.0",
+    "lodash": "^4.17.21",
+    "log4js": "^6.4.4",
+    "moment": "^2.29.2",
+    "mongoose": "^6.10.0",
+    "web3": "^4.8.0",
+    "web3-utils": "^4.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7"
+  }
+}

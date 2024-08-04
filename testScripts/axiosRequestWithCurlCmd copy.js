@@ -1,0 +1,64 @@
+
+const WebSocket = require('ws');
+
+async function testWsRequest(){
+
+
+
+    // let strWS = "http://44.229.225.45:1337";
+    // let client = new WebSocket(strWS);
+
+    let strWS = "https://ogmios.wanchain.gomaestro-api.org/";  
+    let client = new WebSocket(strWS, {
+        headers: {
+            "api-key": "v0LXAjiRQAm3PNjlFSlqB8rfgUp7OExE"
+        }
+    });
+
+    client.once('open', () => {
+        const request = { 
+            "type": "jsonwsp/request",
+            "version": "2.0",
+            "servicename": "ogmios",
+            "methodname": "evaluateTransaction",
+            "args":{
+                "query": "chainTip"
+            }
+
+            // "methodname": "Query",
+            // "args":{
+            //     "query": {
+            //         utxo: ["addr1xyw0kswupwx38ljnvq8pwpvae0x69krywdr7cffg3d84ydp9nvv84g58ykxqh90xx6j8ywgjst0dkt430w9lxgdmzncsw5rzpd"]
+            //     }
+            // }
+
+            // "methodname": "EvaluateTx",
+            // "args":{
+            //     evaluate: "84a50082825820d9a48f1f497a01f0d95243e5fc8ca3df5251ae1dd10d21eaeaa155fbc59ddbbc01825820ff55639d8b8188218f753196e192d3eccb34e6549614cecb9b20cecf4747d790020182a3005839311cfb41dc0b8d13fe53600e17059dcbcda2d8647347ec25288b4f5234259b187aa287258c0b95e636a472391282dedb2eb17b8bf321bb14f1011a00200b20028201d81845d8799f01ff82583901d573c314651c8ae50fcce794198100d6d34ee6fb51d243b666ef459aa40432f8d8c527d60345d582183c2a33f51dc9558b47e4fef539c7411a006d8b1c021a0002c4b5031a06f5beac075820ee0dcf424cf75ab1cfd2b3b08b28bf83d079f59dc9e168ed4dde08feb8080dd9a10081825820f86e30c08857030d1fcadfcb2e750c5f1f817deed4747be1a7a5fc9a5167678b58400ca24c06508f64900adb51bf2bb1d9a253446bbf73d27614011b7d7cd5411b9f66909864420d7057cd047034c392b032c330f891f6387f8bd2bef7fb2a8aba0ef5a101a56b66726f6d4163636f756e74827840616464723171383268387363357635776734656730656e6e656778767071727464786e68786c6467617973616b766d68357478347971736530336b7839796c7478277178337734736776726332336e373577756a347674676c6a30616166656361717370776a6c617765736d6749445820000000000000000000000000000000000000000000000041726965735f30333969746f4163636f756e7454d290071e43abaa7b4de21db8d6a31c8b046f479a6b746f6b656e50616972494419020c647479706501"
+            // },
+
+            // "methodname": "SubmitTx",
+            // "args":{
+            //     submit: "84a500818258208aaa7770d946d7c23a6f342a24fe0f370410361fc86c1187e8b31eacbecbe35c000182a3005839311cfb41dc0b8d13fe53600e17059dcbcda2d8647347ec25288b4f5234259b187aa287258c0b95e636a472391282dedb2eb17b8bf321bb14f1011a002dc6c0028201d81845d8799f01ff82583901d573c314651c8ae50fcce794198100d6d34ee6fb51d243b666ef459aa40432f8d8c527d60345d582183c2a33f51dc9558b47e4fef539c7411a0068113b021a0002be85031a06dbb6250758209e1c0a4569599a4f2dba4c9c5b77d148a999515a37a4ec3a3882316dd89f7ee7a10081825820f86e30c08857030d1fcadfcb2e750c5f1f817deed4747be1a7a5fc9a5167678b58407c3e2a504d07b936c59eb0db6617b76be5bf976c0c0cb73e1d0a03e3560928a556b37859785bc16335804163e803427db925f8d93dc9114e738d46b1ff391b00f5a101a56b66726f6d4163636f756e74827840616464723171383268387363357635776734656730656e6e656778767071727464786e68786c6467617973616b766d68357478347971736530336b7839796c7478277178337734736776726332336e373577756a347674676c6a30616166656361717370776a6c617765736d6749445820000000000000000000000000000000000000000000000041726965735f30333869746f4163636f756e74549d54fb4a5e5467cf3dbc904bcabd5efc38b763446b746f6b656e50616972494419020c647479706501"
+            // }
+        };
+        client.send(JSON.stringify(request));
+        console.log("\n\n have send request: ", JSON.stringify(request));
+    });
+    
+    client.on('message', function(msg) {
+        const response = JSON.parse(msg);
+        console.log("\n\n\n testWsRequest response: ", response);
+        // do something with 'response'
+
+        client.close();
+    });
+
+}
+
+async function main(){
+
+    await testWsRequest();
+}
+
+main();
